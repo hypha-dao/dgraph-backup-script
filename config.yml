@@ -1,0 +1,9 @@
+export-destination: minio://172.17.0.2:9000/doccache-dgraph-backups
+export-use-ssl: false
+export-access-key: miniouser
+export-secret-key: miniopassword
+prometheus-port: 2114
+export-jobs: 
+- name: dho
+  gql-admin-url: http://localhost:8080/admin
+  schedule: "* * * * *"

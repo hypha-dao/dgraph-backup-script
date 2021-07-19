@@ -1,0 +1,12 @@
+version: '3.2'
+    
+services:
+  dgraph-backup-script:
+    build: 
+      context: .
+    command: /usr/local/go/bin/go run . /config/config.yaml
+    volumes:
+      - type: bind
+        source: ./config.yml
+        target: /config/config.yaml
+    restart: on-failure
