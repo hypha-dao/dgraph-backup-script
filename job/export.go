@@ -26,25 +26,22 @@ func NewExport(name, adminEndpoint string, args *gql.ExportArgs, slog *slog.Log)
 		Args:  args,
 		slog:  slog,
 		successCount: promauto.NewCounter(prometheus.CounterOpts{
-			Subsystem: name,
-			Name:      "dgraph_export_success_count",
-			Help:      "# of succeded exports",
+			Name: "dgraph_export_success_count",
+			Help: "# of succeded exports",
 			ConstLabels: prometheus.Labels{
 				"dgraph_instance": name,
 			},
 		}),
 		failedCount: promauto.NewCounter(prometheus.CounterOpts{
-			Subsystem: name,
-			Name:      "dgraph_export_fail_count",
-			Help:      "# of failed exports",
+			Name: "dgraph_export_fail_count",
+			Help: "# of failed exports",
 			ConstLabels: prometheus.Labels{
 				"dgraph_instance": name,
 			},
 		}),
 		lastStatus: promauto.NewGauge(prometheus.GaugeOpts{
-			Subsystem: name,
-			Name:      "dgraph_last_export_status",
-			Help:      "Last export status",
+			Name: "dgraph_last_export_status",
+			Help: "Last export status",
 			ConstLabels: prometheus.Labels{
 				"dgraph_instance": name,
 			},
