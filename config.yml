@@ -6,7 +6,7 @@ prometheus-port: 2114
 export-jobs: 
 - name: dho
   gql-admin-url: http://localhost:8080/admin
-  schedule: "40 * * * *"
+  schedule: "42 * * * *"
 - name: dho2
   gql-admin-url: http://localhost:8080/admin
-  schedule: "41 * * * *"
+  schedule: "43,44 * * * *"

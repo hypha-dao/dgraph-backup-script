@@ -8,7 +8,9 @@ require (
 	github.com/prometheus/client_golang v1.11.0
 	github.com/robfig/cron/v3 v3.0.0
 	github.com/rs/zerolog v1.20.0
-	github.com/sebastianmontero/slog-go v0.0.0-20210213204103-60eda76e8d74
+	github.com/sebastianmontero/slog-go v0.0.0-20210801140624-25c2da708d0b
 	github.com/spf13/viper v1.8.1
 	github.com/stretchr/testify v1.7.0
 )
+
+// replace github.com/sebastianmontero/slog-go => ../slog-go
