@@ -16,6 +16,7 @@ func init() {
 	nameRegex = regexp.MustCompile(nameRegexS)
 }
 
+// Stores a job configuration
 type JobConfig struct {
 	GQLAdminURL string
 	Schedule    string
@@ -34,6 +35,7 @@ func (m *JobConfig) String() string {
 	)
 }
 
+// Loads, validates and stores the initial configuration
 type Config struct {
 	ExportDestination string                   `mapstructure:"export-destination"`
 	ExportUseSSL      bool                     `mapstructure:"export-use-ssl"`
@@ -66,6 +68,7 @@ func LoadConfig(filePath string) (*Config, error) {
 	return &config, nil
 }
 
+// Generates the export url for the specified path
 func (m *Config) GetExportURL(path string) string {
 	url := m.ExportDestination
 	if path != "" {
@@ -77,6 +80,7 @@ func (m *Config) GetExportURL(path string) string {
 	return url
 }
 
+// Processes the raw job configurations, validates them and structures them as JobConfig structs
 func processAdminUrls(raw []map[string]interface{}) (map[string]*JobConfig, error) {
 	jobs := make(map[string]*JobConfig)
 	for _, mapping := range raw {

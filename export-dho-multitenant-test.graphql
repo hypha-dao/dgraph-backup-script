@@ -1,0 +1,15 @@
+# curl http://localhost:8080/admin --silent --request POST --header "Content-Type: application/graphql" --upload-file export-dho-multitenant-test.graphql
+
+mutation() {
+	export(input: {
+		format: "rdf"
+		destination: "minio://minio-dgraph-backup-minio-gcs-gateway.dgraph-backup.svc.cluster.local:9000/doccache-dgraph-backups/dhostm-manual?secure=false"
+		accessKey: "miniouser"
+		secretKey: "miniopassword#1"
+	}) {
+		response {
+			message
+			code
+		}
+	}
+}

@@ -9,6 +9,7 @@ import (
 	"github.com/sebastianmontero/slog-go/slog"
 )
 
+// Job whose purpose is to export a dgraph database
 type Export struct {
 	Name         string
 	Admin        *gql.Admin
@@ -19,6 +20,7 @@ type Export struct {
 	lastStatus   prometheus.Gauge
 }
 
+//Creates a new export job
 func NewExport(name, adminEndpoint string, args *gql.ExportArgs, slog *slog.Log) *Export {
 	return &Export{
 		Name:  name,
@@ -49,6 +51,7 @@ func NewExport(name, adminEndpoint string, args *gql.ExportArgs, slog *slog.Log)
 	}
 }
 
+// Exports the configured dgraph database
 func (m *Export) Run() {
 	m.slog.Infof("Performing export for: %v", m)
 	err := m.Admin.Export(m.Args)

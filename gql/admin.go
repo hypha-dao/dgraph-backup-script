@@ -8,8 +8,11 @@ import (
 	"github.com/machinebox/graphql"
 )
 
+// Provides the services to interact with the dgraph admin endpoint
+
 const ResponseCode_Success = "Success"
 
+// Stores the args required to call the dgraph export service
 type ExportArgs struct {
 	Format      string
 	Destination string
@@ -34,17 +37,20 @@ func (m *ExportArgs) String() string {
 	)
 }
 
+// Stores the details related to a task statuss
 type TaskStatus struct {
 	Status      string
 	LastUpdated time.Time
 	Kind        string
 }
 
+// Provides the functionality to interact with the dgraph admin endpoint
 type Admin struct {
 	client   *graphql.Client
 	Endpoint string
 }
 
+// Creates a new admin instance from the dgraph admin endpoint
 func NewAdmin(endpoint string) *Admin {
 	return &Admin{
 		client:   graphql.NewClient(endpoint),
@@ -52,6 +58,7 @@ func NewAdmin(endpoint string) *Admin {
 	}
 }
 
+// Retrieves the status for the specified task
 func (m *Admin) GetTaskStatus(taskId string) (*TaskStatus, error) {
 	req := graphql.NewRequest(`
 		query($taskId: String!) {
@@ -79,6 +86,7 @@ func (m *Admin) GetTaskStatus(taskId string) (*TaskStatus, error) {
 	}, nil
 }
 
+// Exports the dgraph database
 func (m *Admin) Export(args *ExportArgs) error {
 
 	if args.Format == "" {
@@ -122,6 +130,7 @@ func (m *Admin) Export(args *ExportArgs) error {
 	return nil
 }
 
+// Queries the health of the dgraph instance
 func (m *Admin) Health() (string, error) {
 	req := graphql.NewRequest(`
 		{

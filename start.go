@@ -16,6 +16,8 @@ var (
 	log *slog.Log
 )
 
+// Loads the initial configuration and creates the cron jobs for the
+// specified export jobs
 func main() {
 	logConfig := &slog.Config{Pretty: true, Level: zerolog.DebugLevel}
 	log = slog.New(logConfig, "dgraph-backup-script")
